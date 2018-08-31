@@ -62,11 +62,15 @@ or NID_undef if an error occurred.
 
 OBJ_txt2nid() returns NID corresponding to text string <s>. B<s> can be
 a long name, a short name or the numerical representation of an object.
+If the numerical representation is provided there must be a corresponding
+NID in OpenSSL's codebase.
 
 OBJ_txt2obj() converts the text string B<s> into an ASN1_OBJECT structure.
 If B<no_name> is 0 then long names and short names will be interpreted
-as well as numerical forms. If B<no_name> is 1 only the numerical form
-is acceptable.
+first, as well as numerical forms. If B<no_name> is 1 only the numerical
+form is acceptable.
+Unlike OBJ_txt2nid() the numerical, "dotted" form, (eg. 1.2.3.45) can be
+used with any objects, not just registered ones.
 
 OBJ_obj2txt() converts the B<ASN1_OBJECT> B<a> into a textual representation.
 The representation is written as a null terminated string to B<buf>
