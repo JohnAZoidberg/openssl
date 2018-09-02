@@ -61,6 +61,7 @@ int ERR_load_PEM_strings(void);
 # define PEM_F_PEM_X509_INFO_READ                         115
 # define PEM_F_PEM_X509_INFO_READ_BIO                     116
 # define PEM_F_PEM_X509_INFO_WRITE_BIO                    117
+# define PEM_F_PEM_X509_INFO_WRITE                        118
 
 /*
  * PEM reason codes.

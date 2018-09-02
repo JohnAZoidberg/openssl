@@ -273,6 +273,9 @@ int PEM_ASN1_write(i2d_of_void *i2d, const char *name, FILE *fp,
                    int klen, pem_password_cb *callback, void *u);
 STACK_OF(X509_INFO) *PEM_X509_INFO_read(FILE *fp, STACK_OF(X509_INFO) *sk,
                                         pem_password_cb *cb, void *u);
+int PEM_X509_INFO_write(FILE *fp, X509_INFO *xi, EVP_CIPHER *enc,
+                        unsigned char *kstr, int klen,
+                        pem_password_cb *cb, void *u);
 #endif
 
 int PEM_SignInit(EVP_MD_CTX *ctx, EVP_MD *type);

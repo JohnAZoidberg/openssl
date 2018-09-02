@@ -243,6 +243,26 @@ STACK_OF(X509_INFO) *PEM_X509_INFO_read_bio(BIO *bp, STACK_OF(X509_INFO) *sk,
     return ret;
 }
 
+#ifndef OPENSSL_NO_STDIO
+int PEM_X509_INFO_write(FILE *fp, X509_INFO *xi, EVP_CIPHER *enc,
+                        unsigned char *kstr, int klen,
+                        pem_password_cb *cb, void *u)
+{
+    BIO *b;
+    int ret;
+
+    if ((b = BIO_new(BIO_s_file())) == NULL) {
+        PEMerr(PEM_F_PEM_X509_INFO_WRITE, ERR_R_BUF_LIB);
+        return 0;
+    }
+    BIO_set_fp(b, fp, BIO_NOCLOSE);
+    ret = PEM_X509_INFO_write_bio(b, xi, enc, kstr, klen, cb, u);
+
+    BIO_free(b);
+    return ret;
+}
+#endif
+
 /* A TJH addition */
 int PEM_X509_INFO_write_bio(BIO *bp, X509_INFO *xi, EVP_CIPHER *enc,
                             unsigned char *kstr, int klen,
