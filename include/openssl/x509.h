@@ -268,12 +268,6 @@ typedef struct Netscape_spki_st {
     ASN1_BIT_STRING *signature;
 } NETSCAPE_SPKI;
 
-/* Netscape certificate sequence structure */
-typedef struct Netscape_certificate_sequence {
-    ASN1_OBJECT *type;
-    STACK_OF(X509) *certs;
-} NETSCAPE_CERT_SEQUENCE;
-
 /*- Unused (and iv length is wrong)
 typedef struct CBCParameter_st
         {
@@ -602,7 +596,6 @@ void X509_PKEY_free(X509_PKEY *a);
 
 DECLARE_ASN1_FUNCTIONS(NETSCAPE_SPKI)
 DECLARE_ASN1_FUNCTIONS(NETSCAPE_SPKAC)
-DECLARE_ASN1_FUNCTIONS(NETSCAPE_CERT_SEQUENCE)
 
 X509_INFO *X509_INFO_new(void);
 void X509_INFO_free(X509_INFO *a);
